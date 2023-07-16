@@ -1,10 +1,8 @@
 import Foundation
 
-//Realiza la suma de todos los números pares entre 1 y 1000
-var sum = 0
-for index in 1 ..< 1000{
-    if index % 2 == 0{
-        sum += index
-    }
-}
-print(sum)
+//Leer el radio de un circulo, calcular la superficie y longitud de la circunferencia.
+var r:Double = 3
+let pi = 3.1416
+var area:Double = pi * (r * r)
+var longitud:Double = 2 * pi * r
+print(" Radio: \(r) \n Area: \(area) \n Longitud: \(longitud)")
