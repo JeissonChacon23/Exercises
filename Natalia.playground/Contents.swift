@@ -1,33 +1,17 @@
 import Foundation
 
-//En la ciudad de Pamplona se va a realizar un concierto por el dia de amor y amistad todas las boletas están identificadas con un numero de 6 cifras, que esta compuesto de la siguiente forma: Si la suma del primer y el último digito es mayor que el digito cinco la boleta es valida, en caso contrario no es valida.El segundo Digito determina el tipo de Boleta según la siguiente tablaTipo de Entrada De 1 a 5 GramillaDe 6 a 9 incluyendo 0 GeneralEl numero que forma el tercer y cuarto digito determina la hora y la puerta de entrada al evento según la siguiente tabla Si es par Puerta 1 a partir de las 7 pm Si es impar Puerta 2 a partir de las 8 pm Analice y diseñe un algoritmo donde se ingrese el numero de una boleta y posteriormente determine: Si la boleta es valida, el tipo de boleta y la puerta y horario al cual debe ingresar el espectador.
+//El gobierno del estado de México desea reforestar un bosque que mide determinado número de metros cuadrados. Si la superficie del terreno excede a 1 millón de metros cuadrados, entonces decidirá sembrar de la siguiente manera: Porcentaje de la superficie del bosque Tipo de árbol 70% pino 20% oyamel 10% cedro Si la superficie del terreno es menor o igual a un millón de metros cuadrados, entonces decidirá sembrar de la siguiente manera: Porcentaje de la superficie del bosque Tipo de árbol 50% pino 30% oyamel 20% cedro El gobierno desea saber el numero de pinos, oyameles y cedros que tendrá que sembrar en el bosque, si se sabe que en 10 metros cuadrados caben 8 pinos, en 15 metros cuadrados caben 15 oyameles y en 18 metros cuadrados caben 10 cedros.
 
-var codigo = 437952
-var cif1 = codigo / 100000
-var mod1 = codigo % 100000
-var cif2 = mod1 / 10000
-var mod2 = mod1 % 10000
-var cif3 = mod2 / 1000
-var mod3 = mod2 % 1000
-var cif4 = mod3 / 100
-var mod4 = mod3 % 100
-var cif5 = mod4 / 10
-var cif6 = mod4 % 10
-
-if cif1 + cif6 > cif5{
-    print("Voleta Valida")
-    if cif2 >= 1 && cif2 <= 5{
-        print("Tipo de Entrada: Gramilla")
-    }else{
-        print("Tipo de Entrada: General")
-    }
-    
-    if ((cif3 * 100) + cif4) % 2 == 0{
-        print("Puerta: 1 \nHora: 19:00")
-    }else{
-        print("Puerta: 2 \nHora: 20:00")
-    }
-    
+var area = 10000000.0
+var pino = 0.0
+var oyamel = 0.0
+var cedro = 0.0
+if area > 1000000{
+    pino += ((area * 0.70) / 10) / 8      //70%
+    oyamel += ((area * 0.20) / 15) / 15   //20%
+    cedro += ((area * 0.10) / 18) / 10    //10%
 }else{
-    print("Voleta Invalida")
+    pino += ((area * 0.50) / 10) / 8      //50%
+    oyamel += ((area * 0.30) / 15) / 15   //30%
+    cedro += ((area * 0.20) / 18) / 10    //20%
 }
