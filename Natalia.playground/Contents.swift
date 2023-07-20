@@ -1,21 +1,36 @@
 import Foundation
 
-//Calcular el salario final a pagar a un empleado a quien se le paga a X pesos la hora trabajada. Se hace un descuento de acuerdoa la siguiente tabla comparativa con el salario minimo (dado por teclado) si el salario esta entre Descuento 1 y 2 (incluido) salarios minimos 5% 2 y 6 (incluido) salarios minimos 7% Mas de 6 salarios minimos 10% En caso de que el salario sea menor a un salario minimo se le dara una bonificacion de 20.000 pesos.
+//En central de abastos de Pamplona (bodegas donde se almacena al por mayor) se ha establecido un mecanismo para el ingresode vehículos que permite el cobro de parqueadero según las siguientes condiciones: Al centro de abastos entran vehículos con dos propósitos, algunos entran a descargar productos y otros entran a cargar (estos son los dos tipos de servicio que presta el centro de abastos 1. Cargue y 2.descargue). A los vehículos que entran a descargar se les cobra de acuerdo a la siguiente tabla Peso transportado Tipo de producto Menos de 10 toneladas 10 o mas toneladas 1. Perecedero 10000 pesos por tonelada 7000 pesos por tonelada 2. No perecedero 50000 pesos por todo el producto transportado 50000 por las primeras 10 toneladas y a 5000 pesos cada tonelada que exceda de 10 A los vehículos que entran a cargar se les cobra por el tiempo que permanecen dentro del centro de abastos asi: Las primeras dos horas son gratis para todos los vehiculos que entran a cargar. Las horas extras que permanecen dentro del parqueadero se cobran a 2000 pesos la hora (siempre se cobra la hora completa) y tendrá un incremento del 25% si elcamion mide mas de 4 metros de largo. Hacer el analisis y diseno de un algoritmo que ayude al portero del centro de abastos para calcular el costo de parqueadero de unode los camiones que hace uso de estos servicios.
 
-var salarioMinimo:Double = 1300000
-var hora:Double = 192
-var precioHora:Double = 15000
-var salario:Double = hora * precioHora
+var tipoServicio = 2 // 1.) Descargar o 2.) Cargar
+var precio:Double = 0
 
-if salario >= salarioMinimo && salario <= salarioMinimo * 2{
-    salario -= salario * 0.05
+if tipoServicio == 1{
+    var productoPerecedero:Double = 3
+    var productoNoPerecedero:Double = 5
+    var pesoTransportado = productoPerecedero + productoNoPerecedero //Cantidad de peso en toneladas
+    if pesoTransportado <= 10{
+        precio += productoPerecedero * 10000
+        if productoNoPerecedero != 0{
+            precio += 50000
+        }
+    }else{
+        precio = productoPerecedero * 7000
+        if (productoNoPerecedero > 10){
+            precio += ((productoNoPerecedero - 10) * 5000) + 50000
+        }else{
+            precio += 50000
+        }
+    }
 }
-if salario > salarioMinimo * 2 && salario <= salarioMinimo * 6{
-    salario -= salario * 0.07
-}
-if salario > salarioMinimo * 6{
-    salario -= salario * 0.10
-}
-if salario < salarioMinimo{
-    salario += 20000
+
+if tipoServicio == 2{
+    var tiempoParqueo:Double = 3
+    var largovehiculo:Double = 5
+    if tiempoParqueo > 2{
+        precio = (tiempoParqueo - 2) * 2000
+    }
+    if largovehiculo > 4{
+        precio += precio * 0.25
+    }
 }
